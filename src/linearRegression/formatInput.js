@@ -1,6 +1,7 @@
 import * as tf from "@tensorflow/tfjs"
 
 let formatInput = (input) =>{
+  console.log("FORMATTING INPUT")
   let valid = true
   let data = input.split("\n")
   let data2 = []
