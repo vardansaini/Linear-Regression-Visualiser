@@ -16,7 +16,10 @@ export default (state = initialState,action)=>{
         inputString: action.input
       }
     case "calculateRegression":
+      console.log("INPUT STRING")
+      console.log(state.inputString)
       let [formattedData,arrayData,valid] = formatInput(state.inputString)
+      console.log("passed format input")
       console.log(history)
       if(valid){
         history.push("/results")

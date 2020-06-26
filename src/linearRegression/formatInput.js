@@ -23,4 +23,4 @@ let formatInput = (input) =>{
   return [tensorData,arrayData,valid]
 }
 
-export default formatInput()
+export default formatInput
