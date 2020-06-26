@@ -2,6 +2,7 @@ import * as tf from "@tensorflow/tfjs"
 
 let formatInput = (input) =>{
   console.log("FORMATTING INPUT")
+  console.log(input)
   let valid = true
   let data = input.split("\n")
   let data2 = []
@@ -21,6 +22,7 @@ let formatInput = (input) =>{
     valid = false
   }
   let arrayData = tensorData.arraySync()
+  console.log([tensorData,arrayData,valid])
   return [tensorData,arrayData,valid]
 }
 
