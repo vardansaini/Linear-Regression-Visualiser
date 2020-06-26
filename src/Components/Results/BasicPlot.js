@@ -12,8 +12,6 @@ export default class BasicPlot extends React.Component {
     const Plot = createPlotlyComponent(Plotly);
     return (
       <div>
-        <div id = "tester"></div>
-        {/* <button onClick = {this.plotGraph}>Test</button> */}
         <Plot
           data={[
             {
