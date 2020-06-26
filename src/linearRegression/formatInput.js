@@ -15,6 +15,7 @@ let formatInput = (input) =>{
       Number(number)
     )
   )
+  print("FINISHED DATA 3"+ data3)
   let tensorData = tf.tensor(data3)
   tensorData.print()
   console.log(tensorData.arraySync())
