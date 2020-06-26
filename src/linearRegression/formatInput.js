@@ -1,7 +1,7 @@
 import * as tf from "@tensorflow/tfjs"
 
 let formatInput = (input) =>{
-  console.log("FORMATTING INPUT")
+  console.log("FORMATTING INPUT 1")
   console.log(input)
   console.log("potato")
   let valid = true
