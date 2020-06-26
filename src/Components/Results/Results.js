@@ -24,7 +24,7 @@ class Results extends Component {
               marker: {color: 'red'},
             },
           ]}
-          layout={{width: "40vw", height: "40vh", title: 'A Fancy Plot'}}
+          layout={{width: "40vw", height: "40vh", title: 'Plotted Data'}}
           config = {{staticPlot: true}}
         />
       </div>
