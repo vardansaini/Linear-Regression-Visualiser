@@ -17,7 +17,9 @@ let formatInput = (input) =>{
   )
   console.log("FINISHED DATA 3"+ data3)
   let tensorData = tf.tensor(data3)
+  console.log("tensor data")
   tensorData.print()
+  console.log("PRINTEd")
   console.log(tensorData.arraySync())
   console.log(tensorData.shape)
   if ((tensorData.shape[0]<2) || (tensorData.shape[1]<2)|| (tensorData.shape[0]>2)){
