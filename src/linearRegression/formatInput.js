@@ -15,10 +15,12 @@ let formatInput = (input) =>{
   let tensorData = tf.tensor(data3)
   tensorData.print()
   console.log(tensorData.arraySync())
-  if ((tensorData.shape[0]<2) || (tensorData.shape[1]<2)){
+  console.log(tensorData.shape)
+  if ((tensorData.shape[0]<2) || (tensorData.shape[1]<2)|| (tensorData.shape[0]>2)){
     valid = false
   }
-  return [tensorData,valid]
+  let arrayData = tensorData.arraySync()
+  return [tensorData,arrayData,valid]
 }
 
 export default formatInput

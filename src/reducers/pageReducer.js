@@ -4,6 +4,7 @@ import formatInput from "../linearRegression/formatInput"
 const initialState = {
   inputString: "",
   inputData: [],
+  arrayData:[[-1,1,2,3,4,5],[-1,1,2,3,4,5]],
   regressionEquation:"y=mx+c"
 }
 
@@ -15,12 +16,13 @@ export default (state = initialState,action)=>{
         inputString: action.input
       }
     case "calculateRegression":
-      let [formattedData,valid] = formatInput(state.inputString)
+      let [formattedData,arrayData,valid] = formatInput(state.inputString)
       if(valid){
         history.push("/results")
         return{
           ...state,
-          inputData: formattedData
+          inputData: formattedData,
+          arrayData: arrayData,
         }
       }
       else{

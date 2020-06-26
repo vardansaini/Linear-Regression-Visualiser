@@ -27,10 +27,9 @@ class Home extends Component {
           <label>
             2D Data to be fitted
           </label>
-          <textarea placeholder="E.g.
-3,3;
-4,4;
-5,5;
+          <textarea placeholder="X data followed by Y data
+1,2,3,4,5
+2,3,4,5,6
           " value = {this.props.inputData} onChange = {this.handleChange}>
 
           </textarea>
