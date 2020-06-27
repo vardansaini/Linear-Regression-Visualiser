@@ -25,7 +25,7 @@ let gradientDescent = (xData,yData,theta,alpha,iterations) =>{
   return theta
 }
 
-let linearRegression = (data) =>{
+let linearRegression = (data,alpha,iterations) =>{
   const axis = 1
   data = data.transpose()
   data.print()
@@ -36,7 +36,7 @@ let linearRegression = (data) =>{
   xData.print()
   yData.print()
   data.print()
-  let outputTheta = gradientDescent(xData,yData,tf.tensor([0,0],[2,1]),0.01,1000)
+  let outputTheta = gradientDescent(xData,yData,tf.tensor([0,0],[2,1]),alpha,iterations)
   outputTheta.print()
   return [outputTheta,predictY(xData,outputTheta)]
 }

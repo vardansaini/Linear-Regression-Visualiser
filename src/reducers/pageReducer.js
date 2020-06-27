@@ -7,7 +7,10 @@ const initialState = {
   inputData: [],
   arrayData:[[-1,1,2,3,4,5],[-1,1,2,3,4,5]],
   theta: [],
-  predictions:[]
+  predictions:[],
+  alpha: 0.01,
+  iterations: 500,
+  runTime:0,
 }
 
 export default (state = initialState,action)=>{
@@ -23,7 +26,7 @@ export default (state = initialState,action)=>{
       console.log(history)
       if(valid){
         history.push("/results")
-        let [outputTheta,outputPredictions] = linearRegression(formattedData)
+        let [outputTheta,outputPredictions] = linearRegression(formattedData,state.alpha,state.iterations)
         return{
           ...state,
           inputData: formattedData,
@@ -37,6 +40,16 @@ export default (state = initialState,action)=>{
         return{
           ...state
         }
+      }
+    case "updateAlpha":
+      return{
+        ...state,
+        alpha:action.alpha
+      }
+    case "updateIterations":
+      return {
+        ...state,
+        iterations: action.iterations,
       }
     default:
       return state
