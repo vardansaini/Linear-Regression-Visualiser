@@ -1,9 +1,6 @@
 import * as tf from "@tensorflow/tfjs"
 
 let formatInput = (input) =>{
-  console.log("FORMATTING INPUT 1")
-  console.log(input)
-  console.log("potato")
   let valid = true
   let data = input.split("\n")
   let data2 = []
@@ -15,18 +12,20 @@ let formatInput = (input) =>{
       Number(number)
     )
   )
-  console.log("FINISHED DATA 3"+ data3)
   let tensorData = tf.tensor(data3)
-  console.log("tensor data")
   tensorData.print()
-  console.log("PRINTEd")
-  console.log(tensorData.arraySync())
-  console.log(tensorData.shape)
   if ((tensorData.shape[0]<2) || (tensorData.shape[1]<2)|| (tensorData.shape[0]>2)){
     valid = false
   }
   let arrayData = tensorData.arraySync()
-  console.log([tensorData,arrayData,valid])
+
+  // console.log("potato")
+  // let a = tf.tensor([1,2,3],[1,3])
+  // let b = tf.tensor([[4,5],[7,8],[9,10]],[3,2])
+  // a.print()
+  // tf.ones([b.shape[0],1]).print()
+  // b.print()
+  // console.log(tf.sum(b).arraySync())
   return [tensorData,arrayData,valid]
 }
 

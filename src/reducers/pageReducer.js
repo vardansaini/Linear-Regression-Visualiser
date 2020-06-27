@@ -1,11 +1,13 @@
 
 import history from "../history.js"
 import formatInput from "../linearRegression/formatInput"
+import linearRegression from "../linearRegression/linearRegression"
 const initialState = {
   inputString: "",
   inputData: [],
   arrayData:[[-1,1,2,3,4,5],[-1,1,2,3,4,5]],
-  regressionEquation:"y=mx+c"
+  theta: [],
+  predictions:[]
 }
 
 export default (state = initialState,action)=>{
@@ -21,10 +23,13 @@ export default (state = initialState,action)=>{
       console.log(history)
       if(valid){
         history.push("/results")
+        let [outputTheta,outputPredictions] = linearRegression(formattedData)
         return{
           ...state,
           inputData: formattedData,
           arrayData: arrayData,
+          theta: outputTheta,
+          predictions:outputPredictions,
         }
       }
       else{
