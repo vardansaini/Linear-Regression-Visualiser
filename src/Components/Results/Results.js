@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Plotly from "plotly.js"
+import Plotly from "plotly.js-gl3d-dist"
 import createPlotlyComponent from 'react-plotly.js/factory';
 
 import "./results.css"
@@ -11,6 +11,7 @@ class Results extends Component {
     super(props)
   }
   render() {
+    // const Plotly = require()
     const Plot = createPlotlyComponent(Plotly);
 
     return (
