@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {
-  Router,
+  BrowserRouter,
   Switch,
   Route,
   Link,
@@ -13,7 +13,6 @@ import Header from "./Components/Header"
 import Results from "./Components/Results/Results"
 import "./App.css"
 
-import history from "./history.js"
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Router history={history}>
+      <BrowserRouter>
         <div className = "mainDiv">
           <Header />
           <Switch>
@@ -29,17 +28,19 @@ class App extends Component {
               <Results />
             </Route>
             <Route path="/">
+              {this.props.redirectToResults ? <Redirect to="/results"/>:""}
               <Home />
             </Route>
           </Switch>
         </div>
-      </Router>
+      </BrowserRouter>
     )
     
   }
 }
 
 const mapStateToProps = (state) => ({
+  redirectToResults:state.page.showResults,
 })
 const mapDispatchToProps = (dispatch) => ({
   

@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import {
   Link,
-  useHistory
 } from "react-router-dom";
 
 import {connect} from 'react-redux'
 import "./home.css"
-import history from "../../history"
 import { Button,Slider } from '@material-ui/core';
 
 class Home extends Component {

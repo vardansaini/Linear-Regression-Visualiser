@@ -1,5 +1,3 @@
-
-import history from "../history.js"
 import formatInput from "../linearRegression/formatInput"
 import linearRegression from "../linearRegression/linearRegression"
 const initialState = {
@@ -11,6 +9,7 @@ const initialState = {
   alpha: 0.01,
   iterations: 500,
   runTime:0,
+  showResults: false,
 }
 
 export default (state = initialState,action)=>{
@@ -23,12 +22,11 @@ export default (state = initialState,action)=>{
     case "calculateRegression":
       let [formattedData,arrayData,valid] = formatInput(state.inputString)
       console.log("passed format input")
-      console.log(history)
       if(valid){
-        history.push("/results")
         let [outputTheta,outputPredictions] = linearRegression(formattedData,state.alpha,state.iterations)
         return{
           ...state,
+          showResults:true,
           inputData: formattedData,
           arrayData: arrayData,
           theta: outputTheta,
