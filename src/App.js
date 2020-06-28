@@ -25,7 +25,7 @@ class App extends Component {
         <div className = "mainDiv">
           <Header />
           <Switch>
-            <Route path="linear-regression-visualization/results">
+            <Route path="/results">
               <Results />
             </Route>
             <Route path="/">
