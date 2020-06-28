@@ -19,21 +19,21 @@ let formatInput = (input) => {
   }
   let arrayData = tensorData.arraySync();
 
-  console.log("TESTING");
-  let a = tf.tensor(
-    [
-      [1, 2, 3],
-      [4, 5, 6],
-      [2, 3, 4],
-    ],
-    [3, 3]
-  );
-  a.print();
-  let b = tf.batchNorm(a, tf.zeros(a.shape), tf.ones(a.shape));
-  b.print();
-  console.log("ENDOF TESTING");
+  // console.log("TESTING");
+  // let a = tf.tensor(
+  //   [
+  //     [1, 2, 3],
+  //     [4, 5, 6],
+  //     [2, 3, 4],
+  //   ],
+  //   [3, 3]
+  // );
+  // a.print();
+  // let b = tf.batchNorm(a, tf.zeros(a.shape), tf.ones(a.shape));
+  // b.print();
+  // console.log("ENDOF TESTING");
 
   return [tensorData, arrayData, valid];
 };
-
+ 
 export default formatInput;

@@ -1,6 +1,13 @@
 .resultsContainer{
+  /* display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+  justify-content:center;
+  justify-items: center;
+  align-items:center; */
   display:flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items:flex-start;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+
+  text-align: center;
 }

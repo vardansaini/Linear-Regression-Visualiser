@@ -9,9 +9,13 @@ let costFunction = (xData, yData, theta) => {
 };
 
 let predictY = (xData, theta) => {
-  let predictions = tf.matMul(xData, theta).reshape([1, -1]).arraySync();
-  console.log(predictions);
-  return predictions;
+  let yPredictions = tf.matMul(xData, theta).reshape([1, -1]);
+  yPredictions.print();
+  xData.print();
+  let predictions = tf.concat([xData.gather([1], 1).transpose(), yPredictions]);
+  console.log("Predictions:");
+  predictions.print();
+  return predictions.arraySync();
 };
 
 let gradientDescent = (xData, yData, theta, alpha, iterations) => {
@@ -29,19 +33,32 @@ let gradientDescent = (xData, yData, theta, alpha, iterations) => {
   return theta;
 };
 let costSurface = (xData, yData, theta) => {
-  console.log("POTATO");
   let theta0 = theta.arraySync()[0];
   let theta1 = theta.arraySync()[1];
 
-  let theta0Values = tf.linspace(-2 * theta0, 2 * theta0, 20).arraySync();
-  let theta1Values = tf.linspace(-2 * theta1, 2 * theta0, 20).arraySync();
-
+  // let x = tf.linspace(-2 * theta0, 2 * theta0, 50).arraySync();
+  // let y = tf.linspace(-2 * theta1, 2 * theta0, 50).arraySync();
+  let x = tf.linspace(-5, 5, 50).arraySync();
+  let y = tf.linspace(-5, 5, 50).arraySync();
   console.log("THETA VALUES");
-  console.log(theta0Values);
-  console.log(theta1Values);
+  console.log(x);
+  console.log(y);
+
+  let z = [];
+  for (let xx = 0; xx < x.length; xx++) {
+    let row = [];
+    for (let yy = 0; yy < y.length; yy++) {
+      let thetas = tf.tensor([x[xx], y[yy]], [2, 1]);
+      let cost = costFunction(xData, yData, thetas)
+      row.push(cost);
+    }
+    z.push(row)
+  }
+  console.log("COST SURFACE:");
+  console.log(z);
+  return [x, y, z];
 };
 
-let normalizeData = (xData, yData);
 let linearRegression = (data, alpha, iterations) => {
   //setting up data:
   const axis = 1;
@@ -54,7 +71,7 @@ let linearRegression = (data, alpha, iterations) => {
   let outputTheta = gradientDescent(
     xData,
     yData,
-    tf.tensor([0, 1], [2, 1]),
+    tf.tensor([1, 1], [2, 1]),
     alpha,
     iterations
   );
@@ -63,7 +80,11 @@ let linearRegression = (data, alpha, iterations) => {
 
   let costSurfaceData = costSurface(xData, yData, outputTheta);
 
-  return [outputTheta, predictY(xData, outputTheta)];
+  return [
+    outputTheta.arraySync(),
+    predictY(xData, outputTheta),
+    costSurfaceData,
+  ];
 };
 
 export default linearRegression;
