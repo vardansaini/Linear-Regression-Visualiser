@@ -12,6 +12,7 @@ class Results extends Component {
   }
   render() {
     const Plot = createPlotlyComponent(Plotly);
+
     return (
       <div className = "resultsContainer">
         <Plot
@@ -38,6 +39,17 @@ class Results extends Component {
           ]}
           layout={{width: "40vw", height: "40vh", title: 'Data with regression'}}
           config = {{staticPlot: true}}
+        />
+        <Plot
+        data={[
+          {
+            name: "data",
+            z:[[1,2,3],[1,2,3],[1,2,3]],
+            type: 'surface',
+          },
+        ]}
+        layout={{width: "40vw", height: "40vh", title: '3D'}}
+        // config = {{staticPlot: true}}
         />
       </div>
     )
