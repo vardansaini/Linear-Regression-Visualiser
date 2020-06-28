@@ -25,7 +25,7 @@ export default (state = initialState,action)=>{
       console.log("passed format input")
       console.log(history)
       if(valid){
-        history.push("/results")
+        history.push("linear-regression-visualization/results")
         let [outputTheta,outputPredictions] = linearRegression(formattedData,state.alpha,state.iterations)
         return{
           ...state,
