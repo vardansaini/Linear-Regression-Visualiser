@@ -1,7 +1,7 @@
-import {combineReducers} from 'redux';
-import pageReducer from "./pageReducer"
+import { combineReducers } from "redux";
+import pageReducer from "./pageReducer";
 const allReducers = combineReducers({
-    page:pageReducer,
-})
+  page: pageReducer,
+});
 
 export default allReducers;
