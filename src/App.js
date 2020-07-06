@@ -13,10 +13,10 @@ class App extends Component {
     super(props);
   }
   render() {
-    // const routerHistroy = createBrowserHistory();
+    const routerHistory = createBrowserHistory();
     // history={routerHistroy}
     return (
-      <HashRouter>
+      <HashRouter history = {routerHistory}>
         <div className="mainDiv">
           <Header />
           <Switch>
