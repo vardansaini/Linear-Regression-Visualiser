@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {withRouter, Redirect } from "react-router-dom";
 
 import Plotly from "plotly.js-gl3d-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
@@ -13,9 +14,9 @@ class Results extends Component {
   render() {
     // const Plotly = require()
     const Plot = createPlotlyComponent(Plotly);
-
     return (
       <div className="resultsContainer">
+        {this.props.costSurface.length == 0 ? <Redirect to = "/"/> : ""}
         <div>
           <h4>Theta Values:</h4>
           <p>Theta 0: {this.props.theta[0]}</p>
@@ -96,4 +97,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Results);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Results));

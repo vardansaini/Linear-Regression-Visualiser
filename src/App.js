@@ -13,8 +13,9 @@ class App extends Component {
     super(props);
   }
   render() {
+    const routerHistroy = createBrowserHistory();
     return (
-      <BrowserRouter>
+      <BrowserRouter history={routerHistroy}>
         <div className="mainDiv">
           <Header />
           <Switch>

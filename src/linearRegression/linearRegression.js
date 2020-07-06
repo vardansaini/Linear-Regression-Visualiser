@@ -38,8 +38,8 @@ let costSurface = (xData, yData, theta) => {
 
   // let x = tf.linspace(-2 * theta0, 2 * theta0, 50).arraySync();
   // let y = tf.linspace(-2 * theta1, 2 * theta0, 50).arraySync();
-  let x = tf.linspace(-5, 5, 50).arraySync();
-  let y = tf.linspace(-5, 5, 50).arraySync();
+  let x = tf.linspace(-5, 5, 10).arraySync();
+  let y = tf.linspace(-5, 5, 10).arraySync();
   console.log("THETA VALUES");
   console.log(x);
   console.log(y);
