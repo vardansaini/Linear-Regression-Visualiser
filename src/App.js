@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect,HashRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import Home from "./Components/Home/Home";
