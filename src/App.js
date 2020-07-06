@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect,HashRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import Home from "./Components/Home/Home";
@@ -13,8 +13,10 @@ class App extends Component {
     super(props);
   }
   render() {
+    const routerHistory = createBrowserHistory();
+    // history={routerHistroy}
     return (
-      <BrowserRouter>
+      <HashRouter history = {routerHistory}>
         <div className="mainDiv">
           <Header />
           <Switch>
@@ -27,7 +29,7 @@ class App extends Component {
             </Route>
           </Switch>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

@@ -10,7 +10,7 @@ const initialState = {
   theta: [],
   predictions: [[0,1],[0,1]],
   alpha: 0.01,
-  iterations: 500,
+  iterations: 100,
   runTime: 0,
   showResults: false,
   costFunctionSurface: [],
