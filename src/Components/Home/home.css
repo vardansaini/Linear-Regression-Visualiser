@@ -37,7 +37,7 @@ textarea {
   padding: 1.5rem 0;
   resize: none;
 }
-textarea:focus{
+textarea:focus {
   border-bottom: 3px solid rgb(95, 95, 95);
 }
 input {

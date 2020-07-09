@@ -60,7 +60,9 @@ class Home extends Component {
           onChange={this.handleChange}
         ></textarea>
         <br />
-        <Button onClick={this.handleClick} variant="outlined">Calculate</Button>
+        <Button onClick={this.handleClick} variant="outlined">
+          Calculate
+        </Button>
       </div>
     );
   }
