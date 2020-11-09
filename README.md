@@ -14,11 +14,11 @@ Alpha is the step size.
 
 Both of these values can be changed using the sliders.
 
-![image-20201109170423120](C:\Users\hugo6\AppData\Roaming\Typora\typora-user-images\image-20201109170423120.png)
+![image-20201109170423120](https://github.com/Hugo-WB/linear-regression-visualization/blob/master/screenshot1.png?raw=true)
 
 Cost Function:
 
-![image-20201109170517642](C:\Users\hugo6\AppData\Roaming\Typora\typora-user-images\image-20201109170517642.png)
+![image-20201109170517642](https://github.com/Hugo-WB/linear-regression-visualization/blob/master/screenshot2.png?raw=true)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
