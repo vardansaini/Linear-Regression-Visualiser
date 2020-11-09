@@ -1,5 +1,7 @@
 # Linear Regression Visualization
 
+https://hugo-wb.github.io/linear-regression-visualization/
+
 Web app to visualize the 3D surface of the cost function when performing linear regression.
 
 ![Image1](https://raw.githubusercontent.com/Hugo-WB/linear-regression-visualization/master/equation1.png)
