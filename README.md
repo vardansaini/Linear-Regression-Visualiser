@@ -4,11 +4,15 @@ Web app to visualize the 3D surface of the cost function when performing linear 
 $$
 y = \theta_{0} + \theta_{1}x \\ Cost \space function = J(\theta_0,\theta_1) = \frac{1}{2m}\sum ( h_{\theta}(x^i)-y^i)^2 \\
 $$
+![Image1](https://raw.githubusercontent.com/Hugo-WB/linear-regression-visualization/master/equation1.png)
+
 Repeat: 
 $$
 \theta_0 :=  \theta_0 - \alpha \frac{1}{m} \sum \limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \\
 \theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) x_{i}\right)
 $$
+![equation2](https://github.com/Hugo-WB/linear-regression-visualization/blob/master/equation2.png?raw=true)
+
 For n number of iterations
 
 Alpha is the step size.
