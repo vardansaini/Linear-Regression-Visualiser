@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route, Link, Redirect,HashRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import 'semantic-ui-css/semantic.min.css'
+
 
 import Home from "./Components/Home/Home";
 import Header from "./Components/Header";

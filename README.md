@@ -1,3 +1,26 @@
+# Linear Regression Visualization
+
+Web app to visualize the 3D surface of the cost function when performing linear regression.
+$$
+y = \theta_{0} + \theta_{1}x \\ Cost \space function = J(\theta_0,\theta_1) = \frac{1}{2m}\sum ( h_{\theta}(x^i)-y^i)^2 \\
+$$
+Repeat: 
+$$
+\theta_0 :=  \theta_0 - \alpha \frac{1}{m} \sum \limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \\
+\theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) x_{i}\right)
+$$
+For n number of iterations
+
+Alpha is the step size.
+
+Both of these values can be changed using the sliders.
+
+![image-20201109170423120](C:\Users\hugo6\AppData\Roaming\Typora\typora-user-images\image-20201109170423120.png)
+
+Cost Function:
+
+![image-20201109170517642](C:\Users\hugo6\AppData\Roaming\Typora\typora-user-images\image-20201109170517642.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
@@ -66,4 +89,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
 # linear-regression-visualization
