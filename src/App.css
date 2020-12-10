@@ -1,0 +1,12 @@
+.flexAroundHorizontally{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin:3px;
+}
+.flexStartVertically{
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 3px;
+}

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <p>hello</p>
-    </div>
-  );
+
+import "./App.css"
+
+// Components:
+import Input from "./Components/Input"
+import Output from "./Components/Output"
+
+interface Props {
+  
 }
 
-export default App;
+const App = (props: Props) => {
+  const [showInput,setShowInput] = useState<Boolean>(true);
+  const [showOutput,setShowOutput] = useState<boolean>(false);
+  return (
+    <div>
+      {showInput ? <Input /> :<div />}
+      {showOutput ? <Output /> : <div />}
+    </div>
+  )
+}
+
+export default App
