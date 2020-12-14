@@ -1,25 +1,25 @@
 interface DataType {
-  inputString: string;
-  inputData: number[][];
+  inputData:number[][]
+  outputData:number[][]
 }
 
 const initialData: DataType = {
-  inputString: "",
-  inputData: [[]],
+  outputData:[],
+  inputData:[],
 };
 
 const Data = (state = initialData, action: any): DataType => {
   switch (action.type) {
-    case "setInputString":
-      return {
-        ...state,
-        inputString: action.inputString,
-      };
     case "setInputData":
       return {
         ...state,
         inputData:action.inputData,
       };
+    case "setOutputData":
+      return {
+        ...state,
+        outputData:action.outputData,
+      }
 
     default:
       return {
