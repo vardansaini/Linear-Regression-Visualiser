@@ -1,15 +1,24 @@
 import Regression from "../Algorithms/Regression";
 
+interface output{
+  latexEquation:string,
+  values:number[]
+}
 interface DataType {
   inputData:number[][],
-  outputData:number[][],
-  regression:Regression|undefined
+  regression:Regression|undefined,
+  regressionLineData:number[][],
+  outputData:output,
 }
 
 const initialData: DataType = {
-  outputData:[],
   inputData:[],
+  regressionLineData:[],
   regression:undefined,
+  outputData:{
+    latexEquation:"",
+    values:[]
+  }
 };
 
 const Data = (state = initialData, action: any): DataType => {
@@ -19,17 +28,21 @@ const Data = (state = initialData, action: any): DataType => {
         ...state,
         inputData:action.inputData,
       };
-    case "setOutputData":
+    case "setRegressionLineData":
       return {
         ...state,
-        outputData:action.outputData,
+        regressionLineData:action.regressionLineData,
       }
     case "setRegression":
       return {
         ...state,
         regression:action.regression
       }
-
+    case "setOutputData":
+      return {
+        ...state,
+        outputData:action.outputData
+      }
     default:
       return {
         ...state,

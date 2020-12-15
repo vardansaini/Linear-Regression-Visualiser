@@ -19,18 +19,6 @@ import "./Input.css";
 interface Props {}
 
 export default function Input({}: Props): ReactElement {
-  const textAreaPlaceholder: string = "waguan \nslimes";
-  // redux dispatch:
-  const dispatch = useDispatch();
-  // text area text:
-  let [text, setText] = useState<string>("");
-  let [error, setError] = useState<string>("");
-  let [regressionEquation, setRegressionEquation] = useState<string>("(a*x)+b");
-  let [options, setOptions] = useState({
-    alpha: 0.1,
-    iterations: 1000,
-  });
-
   const regressionTypes: DropdownItemProps[] = [
     { text: "Linear", value: "(a*x)+b" },
     { text: "Exponential", value: "a*(b^x)" },
@@ -39,11 +27,24 @@ export default function Input({}: Props): ReactElement {
     // { text: "Logarithmic",va},
   ];
   const typesToOptions: { [key: string]: any } = {
-    Linear: { alpha: 0.1, iterations: 1000 },
+    Linear: { alpha: 0.01, iterations: 3000 },
     Exponential: { alpha: 0.005, iterations: 1000 },
     Quadratic: { alpha: 0.005, iterations:1000 },
     Custom: { alpha: 0.001, iterations: 1000 },
   };
+
+  const textAreaPlaceholder: string = "waguan \nslimes";
+  // redux dispatch:
+  const dispatch = useDispatch();
+  // text area text:
+  let [text, setText] = useState<string>("");
+  let [error, setError] = useState<string>("");
+  let [regressionEquation, setRegressionEquation] = useState<string>("(a*x)+b");
+  let [options, setOptions] = useState({
+    alpha: typesToOptions["Linear"].alpha,
+    iterations: typesToOptions["Linear"].iterations,
+  });
+
 
   let handleTextAreaChange = (event: any) => {
     setText(event.target.value);
@@ -65,11 +66,10 @@ export default function Input({}: Props): ReactElement {
       return;
     }
     if (formattedInput[0].length !== formattedInput[1].length) {
-      setError("Make sure length of x and y are the same!, Please try again");
+      setError("Make sure length of x and y are the same! Please try again");
       return;
     }
-
-    // show loading screen ????????????????????????????????????????????????????
+    // show loading screen
     dispatch({
       type: "setAppState",
       appState: {
@@ -85,22 +85,11 @@ export default function Input({}: Props): ReactElement {
       options.alpha,
       options.iterations
     );
+    dispatch({type:"setInputData",inputData:formattedInput})
     dispatch({
       type:"setRegression",
       regression:regression,
     })
-    // regression.calculate().then((result) => {
-    //   //show output:
-    //   dispatch({ type: "setOutputData", outputData: result });
-    //   dispatch({
-    //     type: "setAppState",
-    //     appState: {
-    //       showInput: false,
-    //       showLoading: false,
-    //       showOutput: true,
-    //     },
-    //   });
-    // });
   };
 
   let formatInput = (input: string): number[][] => {
