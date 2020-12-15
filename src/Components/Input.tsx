@@ -9,12 +9,16 @@ import {
   Header,
   Message,
   Input as InputSemantic,
+  Checkbox,
 } from "semantic-ui-react";
 
 import Regression from "../Algorithms/Regression";
 import { RootState } from "../store/store";
 
 import "./Input.css";
+
+
+import { parse } from "mathjs";
 
 interface Props {}
 
@@ -23,17 +27,17 @@ export default function Input({}: Props): ReactElement {
     { text: "Linear", value: "(a*x)+b" },
     { text: "Exponential", value: "a*(b^x)" },
     { text: "Quadratic", value: "(a*(x^2)) + b" },
-    { text: "Custom", value: "CUSTOM" },
+    { text: "Custom", value: "Custom" },
     // { text: "Logarithmic",va},
   ];
   const typesToOptions: { [key: string]: any } = {
-    Linear: { alpha: 0.01, iterations: 3000 },
-    Exponential: { alpha: 0.005, iterations: 1000 },
-    Quadratic: { alpha: 0.005, iterations:1000 },
-    Custom: { alpha: 0.001, iterations: 1000 },
+    Linear: { alpha: "0.01", iterations: "3000" },
+    Exponential: { alpha: "0.005", iterations: "4000" },
+    Quadratic: { alpha: "0.005", iterations: "4000" },
+    Custom: { alpha: "0.001", iterations: '5000' },
   };
 
-  const textAreaPlaceholder: string = "waguan \nslimes";
+  const textAreaPlaceholder: string = "x followed by y: \n0,1,2,3,4,5\n0,1,2,3,4,5";
   // redux dispatch:
   const dispatch = useDispatch();
   // text area text:
@@ -44,19 +48,42 @@ export default function Input({}: Props): ReactElement {
     alpha: typesToOptions["Linear"].alpha,
     iterations: typesToOptions["Linear"].iterations,
   });
-
+  let [starting, setStarting] = useState<[string, string]>(["0", "0"]);
+  let [showAdvanced,setShowAdvanced] = useState<boolean>(false);
+  let [custom,setCustom] = useState<boolean>(false)
 
   let handleTextAreaChange = (event: any) => {
     setText(event.target.value);
   };
   let handleDropdown = (event: any, data: any) => {
-    setRegressionEquation(data.value);
+    if (event.target.textContent === "Custom"){
+      setCustom(true)
+      setRegressionEquation("");
+    }else{
+      setRegressionEquation(data.value);
+      setCustom(false)
+    }
     setOptions(typesToOptions[event.target.textContent]);
   };
-
-  useEffect(() => {
-    console.log("HUUHH")
-  }, [dispatch])
+  let handleOptions = (event: any, data: any) => {
+    console.log({ event, data });
+    switch (data.label) {
+      case "Starting A":
+        setStarting([data.value, starting[1]]);
+        break;
+      case "Starting B":
+        setStarting([starting[0], data.value]);
+        break;
+      case "alpha":
+        setOptions({ ...options, alpha: data.value });
+        break;
+      case "iterations":
+        setOptions({ ...options, iterations: data.value });
+        break;
+      default:
+        break;
+    }
+  };
 
   let calculate = async () => {
     // Formatting + Input checking:
@@ -68,6 +95,21 @@ export default function Input({}: Props): ReactElement {
     if (formattedInput[0].length !== formattedInput[1].length) {
       setError("Make sure length of x and y are the same! Please try again");
       return;
+    }
+    try {
+      parseInt(options.iterations)
+      Number(options.alpha)
+      Number(starting[0])
+      Number(starting[1])
+    } catch (error) {
+      setError("Invalid Input, Please try again");
+      return;
+    }
+    try{
+      parse(regressionEquation)
+    }catch(error){
+      setError("Invalid Custom function")
+      return
     }
     // show loading screen
     dispatch({
@@ -82,14 +124,15 @@ export default function Input({}: Props): ReactElement {
     let regression: Regression = new Regression(
       regressionEquation,
       formattedInput,
-      options.alpha,
-      options.iterations
+      Number(options.alpha),
+      Number(options.iterations),
+      [Number(starting[0]),Number(starting[1])]
     );
-    dispatch({type:"setInputData",inputData:formattedInput})
+    dispatch({ type: "setInputData", inputData: formattedInput });
     dispatch({
-      type:"setRegression",
-      regression:regression,
-    })
+      type: "setRegression",
+      regression: regression,
+    });
   };
 
   let formatInput = (input: string): number[][] => {
@@ -111,7 +154,7 @@ export default function Input({}: Props): ReactElement {
 
   return (
     <div className="flexStartVertically">
-      <div className="flexAroundHorizontally">
+      <div className="flexAroundHorizontally" style={{maxWidth:"1000px"}} id="inputs">
         <Dropdown
           fluid
           selection
@@ -119,15 +162,37 @@ export default function Input({}: Props): ReactElement {
           onChange={handleDropdown}
           // set linear as default
           defaultValue="(a*x)+b"
+          style={{minWidth:"200px"}}
         />
+        <Checkbox label = "Show advanced settings" checked = {showAdvanced} onClick = {()=>setShowAdvanced(!showAdvanced)}/>
+        {showAdvanced?(<div>
+        <InputSemantic
+          label="alpha"
+          value={options.alpha}
+          onChange={handleOptions}
+          size={"small"}
+        />
+        <InputSemantic
+          label="iterations"
+          value={options.iterations}
+          onChange={handleOptions}
+        />
+        <InputSemantic
+          label="Starting A"
+          value={starting[0]}
+          onChange={handleOptions}
+        />
+        <InputSemantic
+          label="Starting B"
+          value={starting[1]}
+          onChange={handleOptions}
+        />
+
+        </div>):<div/>}
       </div>
-      {regressionEquation === "CUSTOM" ? (
-        <div className="flexAroundHorizontally">
-          <InputSemantic label="Custom Equation" placeholder="(a*x) + b" />
-        </div>
-      ) : (
-        <div />
-      )}
+      <div className="flexAroundHorizontally">
+        <InputSemantic label={custom?"Custom Equation":"Equation"} placeholder="(a*x) + b" onChange={(event,data)=>setRegressionEquation(data.value)} value={regressionEquation} disabled={!custom} />
+      </div>
       <div className="flexAroundHorizontally">
         <textarea
           placeholder={textAreaPlaceholder}

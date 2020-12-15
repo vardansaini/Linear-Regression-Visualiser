@@ -101,7 +101,6 @@ class Regression {
         row.push(this.cost(a, b));
         // zCoord.push(this.cost(a,b))
       }
-
       zCoord.push(row)
     }
     return [aCoord, bCoord, zCoord];
