@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import {
   Button,
   Dropdown,
@@ -111,8 +111,13 @@ export default function Input({}: Props): ReactElement {
 
   let calculate = async () => {
     // Formatting + Input checking:
+    setError("");
+    if (textX === "" || textY === "") {
+      setError("Please enter some data");
+      return;
+    }
     let formattedInputX: number[][] = formatInput(textX);
-    let formattedInputY: number[][] = formatInput(textX);
+    let formattedInputY: number[][] = formatInput(textY);
     if (formattedInputX.length !== 1 && formattedInputY.length !== 1) {
       setError("Invalid Input, Please try again");
       return;
@@ -168,7 +173,7 @@ export default function Input({}: Props): ReactElement {
     try {
       // split string by \n to get an array of lines
       let lines = input.split("\n");
-      if (lines.length == 1) {
+      if (lines.length === 1) {
         let numberLines = lines.map((line) => {
           // Split line by commas
           let splitLine = line.split(",");
@@ -179,7 +184,7 @@ export default function Input({}: Props): ReactElement {
 
         return numberLines;
       }
-      return [];
+      return [] as number[][]; // return empty array if there are no lines
     } catch (error) {
       return [];
     }

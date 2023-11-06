@@ -28,7 +28,7 @@ class Regression {
     iterations: number,
     starting:[number,number]=[0,0]
   ) {
-    console.log({ functionString, inputData, iterations, alpha });
+    // console.log({ functionString, inputData, iterations, alpha });
     // Function used: E.g. a*x +b
     this.functionString = functionString;
     this.xValues = inputData[0];
@@ -95,7 +95,7 @@ class Regression {
         a < Math.round(this.a)+range + 1;
         a++
       ) {
-        if (b==Math.round(this.b)-range){
+        if (b===Math.round(this.b)-range){
           aCoord.push(a);
         }
         row.push(this.cost(a, b));
@@ -123,8 +123,8 @@ class Regression {
     );
     let aFunc: MathNode = derivative(absoluteDifference, "a");
     let bFunc: MathNode = derivative(absoluteDifference, "b");
-    console.log(aFunc.toString());
-    console.log(bFunc.toString());
+    // console.log(aFunc.toString());
+    // console.log(bFunc.toString());
 
     for (let i = 0; i < this.iterations; i++) {
       // console.log(this.cost(this.a,this.b))
@@ -139,8 +139,8 @@ class Regression {
         this.sumForAllXY(bFunc, { a: this.a, b: this.b });
       this.steps.push([this.a, this.b]);
     }
-    console.log(this.steps)
-    console.log(this.a, this.b);
+    // console.log(this.steps)
+    // console.log(this.a, this.b);
     return [Math.round(this.a*100)/100, Math.round(this.b*100)/100];
   };
 }

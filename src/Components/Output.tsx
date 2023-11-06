@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-
-// import Plotly from "plotly.js-gl3d-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
 
-import { InlineMath, BlockMath } from "react-katex";
+import {BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
 import { RootState } from "src/store/store";
@@ -22,10 +19,6 @@ const Output = (props: Props) => {
   );
   const inputData = useSelector((state: RootState) => state.Data.inputData);
   const outputData = useSelector((state: RootState) => state.Data.outputData);
-  console.log(outputData);
-  const regression = useSelector((state: RootState) => state.Data.regression);
-
-  const PlotRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="flexStartVertically">

@@ -55,6 +55,11 @@
     ]
   },
   "devDependencies": {
-    "@types/plotly.js": "^1.54.6"
+    "@types/plotly.js": "^1.54.6",
+    "css-loader": "^6.8.1",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

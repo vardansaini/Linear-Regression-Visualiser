@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "./store/store";
@@ -9,8 +8,6 @@ import "./App.css";
 import Input from "./Components/Input";
 import Output from "./Components/Output";
 import Loading from "./Components/Loading";
-
-import { Header } from "semantic-ui-react";
 
 interface Props {}
 
