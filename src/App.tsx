@@ -15,23 +15,14 @@ import { Header } from "semantic-ui-react";
 interface Props {}
 
 const App = (props: Props) => {
-  const showInput = useSelector((state: RootState) => state.AppState.showInput);
-  const showOutput = useSelector(
-    (state: RootState) => state.AppState.showOutput
-  );
   const showLoading = useSelector(
     (state: RootState) => state.AppState.showLoading
   );
 
-  // useEffect(() => {
-  //   return () => {
-  //   }
-  // }, [showInput,showOutput,showLoading])
-
   return (
     <div>
-      {showInput ? <Input /> : <div />}
-      {showOutput ? <Output /> : <div />}
+      <Input />
+      <Output />
       {showLoading ? <Loading /> : <div />}
     </div>
   );

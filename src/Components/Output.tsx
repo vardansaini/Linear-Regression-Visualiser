@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import Plotly from "plotly.js-gl3d-dist";
+// import Plotly from "plotly.js-gl3d-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
 
 import { InlineMath, BlockMath } from "react-katex";
@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { Header } from "semantic-ui-react";
 import { CircleLoader, ClimbingBoxLoader } from "react-spinners";
 
+const Plotly = require("plotly.js-gl3d-dist");
 interface Props {}
 
 const Output = (props: Props) => {
@@ -36,7 +37,7 @@ const Output = (props: Props) => {
   const outputData = useSelector((state: RootState) => state.Data.outputData);
   const regression = useSelector((state: RootState) => state.Data.regression);
 
-  const PlotRef = useRef<HTMLDivElement>(null)
+  const PlotRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="flexStartVertically">
@@ -69,49 +70,10 @@ const Output = (props: Props) => {
         config={{ staticPlot: true }}
       />
       <BlockMath>{outputData.latexEquation}</BlockMath>
-      <div className="flexAroundHorizontally" >
+      <div className="flexAroundHorizontally">
         <Header>
           a = {outputData.values[0]} b = {outputData.values[1]}
         </Header>
-      </div>
-      <div ref={PlotRef} style={{width:"100%"}} className="flexAroundHorizontally">
-      {costSurface.length == 0 ? (
-        <div className = "flexAroundHorizontally" style={{width:"100%",height:"auto"}}>
-          {/* <ClimbingBoxLoader size={60} color={"teal"} /> */}
-        </div>
-      ) : (
-        <Plot
-          data={[
-            {
-              name: "surface",
-              x: costSurface[0],
-              y: costSurface[1],
-              z: costSurface[2],
-              type: "surface",
-              opacity: 0.5,
-
-            },
-            {
-              name:"Path taken for gradient descent",
-              type: "scatter3d",
-              mode: "lines",
-              x: steps[0],
-              y: steps[1],
-              z: steps[2],
-              line: {
-                color:"teal",
-                width: 9,
-              },
-            },
-          ]}
-          layout={{
-            title: "Cost Surface",
-            "xaxis.title": "A",
-            "yaxis.title": "B",
-          }}
-          style={{width:"100%",height:"100%"}}
-        />
-      )}
       </div>
     </div>
   );
