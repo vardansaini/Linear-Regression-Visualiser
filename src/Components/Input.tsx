@@ -3,21 +3,17 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
-  Container,
   Dropdown,
   DropdownItemProps,
-  Header,
   Message,
   Input as InputSemantic,
-  Checkbox,
 } from "semantic-ui-react";
 
 import Regression from "../Algorithms/Regression";
-import { RootState } from "../store/store";
-
 import "./Input.css";
-
 import { parse } from "mathjs";
+
+const data = require("../data.json");
 
 interface Props {}
 
@@ -62,9 +58,57 @@ export default function Input({}: Props): ReactElement {
     setOptions(typesToOptions[event.target.textContent]);
   };
 
+  useEffect(() => {
+    init();
+  }, []);
+
   let refresh = () => {
     window.location.reload();
   };
+
+  let init = async () => {
+    let formattedInput: number[][] = [];
+    formattedInput.push(data[0]);
+    formattedInput.push(data[1]);
+    try {
+      parseInt(options.iterations);
+      Number(options.alpha);
+      Number(starting[0]);
+      Number(starting[1]);
+    } catch (error) {
+      setError("Invalid Input, Please try again");
+      return;
+    }
+    try {
+      parse(regressionEquation);
+    } catch (error) {
+      setError("Invalid Custom function");
+      return;
+    }
+    // show loading screen
+    dispatch({
+      type: "setAppState",
+      appState: {
+        showInput: false,
+        showLoading: true,
+        showOutput: false,
+      },
+    });
+    // intialize regression class with all the options
+    let regression: Regression = new Regression(
+      regressionEquation,
+      formattedInput,
+      Number(options.alpha),
+      Number(options.iterations),
+      [Number(starting[0]), Number(starting[1])]
+    );
+    dispatch({ type: "setInputData", inputData: formattedInput });
+    dispatch({
+      type: "setRegression",
+      regression: regression,
+    });
+  };
+
   let calculate = async () => {
     // Formatting + Input checking:
     let formattedInputX: number[][] = formatInput(textX);

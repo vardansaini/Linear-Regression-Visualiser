@@ -9,25 +9,12 @@ import "katex/dist/katex.min.css";
 import { RootState } from "src/store/store";
 import { useSelector } from "react-redux";
 import { Header } from "semantic-ui-react";
-import { CircleLoader, ClimbingBoxLoader } from "react-spinners";
 
 const Plotly = require("plotly.js-gl3d-dist");
+
 interface Props {}
 
 const Output = (props: Props) => {
-  const [costSurface, setCostSurface] = useState<any[]>([]);
-  const [steps, setSteps] = useState<number[][]>([]);
-  useEffect(() => {
-    console.log("calculating cost surface...");
-    let CS = regression?.calculateCostSurface();
-    let s = regression?.getSteps();
-    if (CS != undefined && s != undefined) {
-      console.log({ CS, s });
-      setCostSurface(CS);
-      setSteps(s);
-    }
-    // PlotRef?.current?.scrollIntoView({behavior:"smooth"});
-  }, []);
   const Plot = createPlotlyComponent(Plotly);
 
   const regressionLineData = useSelector(
@@ -35,6 +22,7 @@ const Output = (props: Props) => {
   );
   const inputData = useSelector((state: RootState) => state.Data.inputData);
   const outputData = useSelector((state: RootState) => state.Data.outputData);
+  console.log(outputData);
   const regression = useSelector((state: RootState) => state.Data.regression);
 
   const PlotRef = useRef<HTMLDivElement>(null);
